@@ -75,6 +75,8 @@
 </template>
 <script>
 import LoginSistema from '../components/LoginSistema.vue'
+import { mapActions} from 'vuex';
+import API from '@/API'
 export default {
     components:{
         LoginSistema,
@@ -92,7 +94,12 @@ export default {
         }
     },
 
+    created() {
+        
+    },
+
     computed: {
+        
         tituloLogin (){
             return this.titulo === -1 ? 'Iniciar Sesion' : ''
         },
@@ -103,8 +110,14 @@ export default {
     },
 
     methods: {
+        ...mapActions(["login"]),
         acceder(){
-            this.$router.push({path:'/inicio'})
+            API.post('iniciar_sesion', this.editedItem)
+            .then(respuesta=>{
+                console.log(respuesta.data.data);
+                this.$router.push({path:'/inicio'})
+            })
+           
         }
     },
 }

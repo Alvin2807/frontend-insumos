@@ -9,7 +9,7 @@
                 <v-list-item two-line>
                     <v-icon size="50px">account_circle</v-icon>
                     <v-list-item-content>
-                        <v-list-item-title>Usuario</v-list-item-title>
+                        <v-list-item-title></v-list-item-title>
                         <v-list-item-subtitle>Apellido</v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
@@ -65,6 +65,7 @@
     </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
     data() {
         return {
@@ -84,6 +85,7 @@ export default {
     },
 
     computed: {
+        ...mapState[("setToken")],
         tituloToolbar(){
             return this.titulo === -1 ? 'Sistema de Control de Insumos' : ''
         }
