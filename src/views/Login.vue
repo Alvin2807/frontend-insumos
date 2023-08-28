@@ -75,7 +75,6 @@
 </template>
 <script>
 import LoginSistema from '../components/LoginSistema.vue'
-import { mapActions} from 'vuex';
 import API from '@/API'
 export default {
     components:{
@@ -94,10 +93,6 @@ export default {
         }
     },
 
-    created() {
-        
-    },
-
     computed: {
         
         tituloLogin (){
@@ -110,13 +105,16 @@ export default {
     },
 
     methods: {
-        ...mapActions(["login"]),
         acceder(){
             API.post('iniciar_sesion', this.editedItem)
             .then(respuesta=>{
-                console.log(respuesta.data.data);
+                const token  = respuesta.data.token
+                const user   = respuesta.data.data.name
+                localStorage.setItem('token', token)
+                localStorage.setItem('user', JSON.stringify(user))
+                API.defaults.headers.common['Authorization'] = "Bearer" +token
                 this.$router.push({path:'/inicio'})
-            })
+        })
            
         }
     },

@@ -9,7 +9,7 @@
                 <v-list-item two-line>
                     <v-icon size="50px">account_circle</v-icon>
                     <v-list-item-content>
-                        <v-list-item-title></v-list-item-title>
+                        <v-list-item-title>{{ datos }}</v-list-item-title>
                         <v-list-item-subtitle>Apellido</v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
@@ -65,7 +65,6 @@
     </div>
 </template>
 <script>
-import { mapState } from 'vuex'
 export default {
     data() {
         return {
@@ -76,7 +75,7 @@ export default {
                     action:'segment',
                     items:
                     [
-                        {title:'Categorías', path:'/categoria'}
+                        {title:'Categorías', path:'/categorias'}
                     ],
                     title:'Parametros'
                 }
@@ -84,10 +83,17 @@ export default {
         }
     },
 
+    mounted() {
+        this.datos
+    },
+
     computed: {
-        ...mapState[("setToken")],
         tituloToolbar(){
             return this.titulo === -1 ? 'Sistema de Control de Insumos' : ''
+        },
+
+        datos(){
+            return localStorage.getItem('user').replace(/['"]+/g, '');
         }
     },
 }
