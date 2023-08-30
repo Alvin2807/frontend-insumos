@@ -10,7 +10,6 @@
                     <v-icon size="50px">account_circle</v-icon>
                     <v-list-item-content>
                         <v-list-item-title>{{ datos }}</v-list-item-title>
-                        <v-list-item-subtitle>Apellido</v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
             </template>
@@ -58,9 +57,9 @@
             <v-spacer></v-spacer>
         </v-app-bar>
 
-        <v-main>
+      
             <router-view/>
-        </v-main>
+       
         </v-app>
     </div>
 </template>

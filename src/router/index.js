@@ -20,14 +20,23 @@ const routes = [
       {
         path:'/categorias',
         name:'Categoria',
-        component:() =>import('../views/Categorias.vue')
+        component:() =>import('../views/Categorias.vue'),
+        meta:{
+          requiresAuth: true
+        }
       }
     ]
   }
 ]
 
+
+
 const router = new VueRouter({
-  routes
-})
+  mode: "history",
+  base: process.env.BASE_URL,
+  routes,
+  
+});
+
 
 export default router
